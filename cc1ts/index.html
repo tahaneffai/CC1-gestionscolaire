@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .nav-bar {
+            background-color: #333;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+        .nav-bar button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+        .nav-bar button:hover {
+            background-color: #45a049;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .data-display {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            display: none;
+        }
+        .data-display.active {
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>School Management System</h1>
+    
+    <div class="nav-bar">
+        <button onclick="showSection('students')">Show Students</button>
+        <button onclick="showSection('courses')">Show Courses</button>
+        <button onclick="showSection('services')">Show Services</button>
+        <button onclick="showSection('addStudent')">Add Student</button>
+        <button onclick="showSection('addCourse')">Add Course</button>
+        <button onclick="showSection('addService')">Add Service</button>
+    </div>
+
+    <div id="students" class="data-display">
+        <h2>Students List</h2>
+        <table id="studentsTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Grade Level</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="courses" class="data-display">
+        <h2>Courses List</h2>
+        <table id="coursesTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Subject</th>
+                    <th>Teacher</th>
+                    <th>Schedule</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="services" class="data-display">
+        <h2>Services List</h2>
+        <table id="servicesTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Schedule</th>
+                    <th>Location</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="addStudent" class="data-display">
+        <h2>Add New Student</h2>
+        <form id="studentForm">
+            <input type="text" id="studentId" placeholder="Student ID" required>
+            <input type="text" id="firstName" placeholder="First Name" required>
+            <input type="text" id="lastName" placeholder="Last Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="date" id="dateOfBirth" required>
+            <input type="number" id="gradeLevel" placeholder="Grade Level" required>
+            <button type="submit">Add Student</button>
+        </form>
+    </div>
+
+    <div id="addCourse" class="data-display">
+        <h2>Add New Course</h2>
+        <form id="courseForm">
+            <input type="text" id="courseId" placeholder="Course ID" required>
+            <input type="text" id="courseName" placeholder="Course Name" required>
+            <select id="subject" required>
+                <option value="math">Math</option>
+                <option value="science">Science</option>
+                <option value="history">History</option>
+            </select>
+            <input type="text" id="teacherId" placeholder="Teacher ID" required>
+            <input type="text" id="schedule" placeholder="Schedule" required>
+            <input type="text" id="classroom" placeholder="Classroom" required>
+            <button type="submit">Add Course</button>
+        </form>
+    </div>
+
+    <div id="addService" class="data-display">
+        <h2>Add New Service</h2>
+        <form id="serviceForm">
+            <input type="text" id="serviceId" placeholder="Service ID" required>
+            <input type="text" id="serviceName" placeholder="Service Name" required>
+            <select id="serviceType" required>
+                <option value="TUTORING">Tutoring</option>
+                <option value="SPORTS">Sports</option>
+                <option value="ARTS">Arts</option>
+                <option value="CLUBS">Clubs</option>
+            </select>
+            <input type="text" id="serviceSchedule" placeholder="Schedule" required>
+            <input type="text" id="serviceLocation" placeholder="Location" required>
+            <input type="number" id="capacity" placeholder="Capacity" required>
+            <button type="submit">Add Service</button>
+        </form>
+    </div>
+
+    <script type="module">
+        import { initializeUI } from './ui.ts';
+        // Make showSection available globally
+        window.showSection = (sectionId) => {
+            // Hide all sections
+            document.querySelectorAll('.data-display').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Show selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+        };
+        initializeUI();
+    </script>
+</body>
+</html>

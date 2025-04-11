@@ -1,0 +1,49 @@
+// Import Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// Custom Variables
+$transition-speed: 0.3s;
+
+// Custom Styles
+.section {
+    display: none;
+    opacity: 0;
+    transition: opacity $transition-speed ease-in-out;
+
+    &.active {
+        display: block;
+        opacity: 1;
+    }
+}
+
+.card {
+    transition: transform $transition-speed ease-in-out;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+}
+
+.table {
+    th {
+        white-space: nowrap;
+    }
+}
+
+// Dashboard cards
+.card {
+    .display-4 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin: 0;
+    }
+}
+
+// Responsive adjustments
+@include media-breakpoint-down(md) {
+    .card {
+        .display-4 {
+            font-size: 2rem;
+        }
+    }
+} 
